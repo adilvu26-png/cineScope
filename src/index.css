@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  scrollbar-color: #333 #0b0b0b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-void-950 text-mist-100 font-sans antialiased;
+  background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212, 162, 78, 0.08), transparent);
+}
+
+::selection {
+  background: rgba(212, 162, 78, 0.35);
+  color: #fff;
+}
+
+/* Visible keyboard focus, always */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #D4A24E;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .glass {
+    @apply bg-void-900/60 backdrop-blur-xl border border-white/[0.06];
+  }
+
+  .heading-display {
+    @apply font-display tracking-tight;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold text-marquee/90 tracking-wide;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-marquee px-6 py-3 text-sm font-semibold text-void-950 transition-all duration-300 hover:bg-marquee-light hover:shadow-glow-marquee active:scale-[0.97];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-mist-100 backdrop-blur-sm transition-all duration-300 hover:border-white/30 hover:bg-white/[0.08] active:scale-[0.97];
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden bg-void-700;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.08) 40px,
+      rgba(255, 255, 255, 0.03) 80px
+    );
+    background-size: 600px 100%;
+  }
+
+  .skeleton-shimmer {
+    animation: shimmer 1.8s infinite linear;
+  }
+
+  .section-pad {
+    @apply px-5 sm:px-8 lg:px-12 xl:px-16;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
